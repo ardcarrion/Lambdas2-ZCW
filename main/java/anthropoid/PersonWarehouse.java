@@ -5,6 +5,7 @@ import tools.ReflectionUtils;
 import tools.logging.LoggerHandler;
 import tools.logging.LoggerWarehouse;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -86,7 +87,8 @@ public final class PersonWarehouse implements Iterable<Person> {
         return people.stream().flatMap(person -> Stream.of(person.getAliases()));
     }
 
-    public static void printPersons(List<Person> roster, Predicate<Person> predicate) {
+    public static ArrayList<Person> printPersons(List<Person> roster, Predicate<Person> predicate) {
+        ArrayList<Person> people = new ArrayList<>();
         CheckPerson tester = new CheckPerson() {
             @Override
             public boolean test(Person p) {
@@ -95,9 +97,11 @@ public final class PersonWarehouse implements Iterable<Person> {
         };
         for (Person p : roster) {
             if (tester.test(p)) {
+                people.add(p);
                 p.printPerson(p);
             }
         }
+        return people;
     }
 
 
