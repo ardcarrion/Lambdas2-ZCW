@@ -1,10 +1,10 @@
 package anthropoid;
 
-import com.zipcodewilmington.streams.TestConstants;
-import com.zipcodewilmington.streams.tools.ReflectionUtils;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import tools.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
