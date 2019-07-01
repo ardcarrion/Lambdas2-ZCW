@@ -6,6 +6,7 @@ import tools.logging.LoggerHandler;
 import tools.logging.LoggerWarehouse;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -92,6 +93,20 @@ public final class PersonWarehouse implements Iterable<Person> {
             }
         }
     }
+
+    public class Tester implements CheckPerson{
+
+        private Predicate predicate;
+        public Tester(Predicate<Person> predicate) {
+            this.predicate = predicate;
+        }
+
+        public boolean test(Person p) {
+            return predicate.test(p);
+        }
+    }
+
+
     // DO NOT MODIFY
     public Boolean contains(Person p) {
         return people.contains(p);

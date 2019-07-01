@@ -74,4 +74,11 @@ public class TestPersonWarehouse {
 
         Assert.assertEquals(localNames.toString(), warehouseNames.toString());
     }
+
+    @Test
+    public void testPrintPersons() {
+        List<Person> roster = factory.createPersonList(1000);
+        CheckPerson tester = warehouse.new Tester();
+    }
+
 }
