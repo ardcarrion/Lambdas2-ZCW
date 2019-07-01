@@ -1,8 +1,9 @@
 package anthropoid;
 
-import com.zipcodewilmington.streams.tools.ReflectionUtils;
-import com.zipcodewilmington.streams.tools.logging.LoggerHandler;
-import com.zipcodewilmington.streams.tools.logging.LoggerWarehouse;
+
+import tools.ReflectionUtils;
+import tools.logging.LoggerHandler;
+import tools.logging.LoggerWarehouse;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -84,6 +85,13 @@ public final class PersonWarehouse implements Iterable<Person> {
         return people.stream().flatMap(person -> Stream.of(person.getAliases()));
     }
 
+    public static void printPersons(List<Person> roster, CheckPerson tester) {
+        for (Person p : roster) {
+            if (tester.test(p)) {
+                p.printPerson(p);
+            }
+        }
+    }
     // DO NOT MODIFY
     public Boolean contains(Person p) {
         return people.contains(p);

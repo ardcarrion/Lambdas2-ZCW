@@ -68,4 +68,8 @@ public class Person implements Comparable<Person> {
     public int compareTo(Person o) {
         return o.toString().compareTo(this.toString());
     }
+
+    public void printPerson(Person p) {
+        System.out.println(p.toString());
+    }
 }

@@ -1,7 +1,7 @@
 package anthropoid;
 
-import com.zipcodewilmington.streams.tools.RandomUtils;
-import com.zipcodewilmington.streams.tools.StringUtils;
+import tools.RandomUtils;
+import tools.StringUtils;
 
 import java.util.Date;
 import java.util.List;
