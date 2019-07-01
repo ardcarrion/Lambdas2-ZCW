@@ -86,23 +86,17 @@ public final class PersonWarehouse implements Iterable<Person> {
         return people.stream().flatMap(person -> Stream.of(person.getAliases()));
     }
 
-    public static void printPersons(List<Person> roster, CheckPerson tester) {
+    public static void printPersons(List<Person> roster, Predicate<Person> predicate) {
+        CheckPerson tester = new CheckPerson() {
+            @Override
+            public boolean test(Person p) {
+                return predicate.test(p);
+            }
+        };
         for (Person p : roster) {
             if (tester.test(p)) {
                 p.printPerson(p);
             }
-        }
-    }
-
-    public class Tester implements CheckPerson{
-
-        private Predicate predicate;
-        public Tester(Predicate<Person> predicate) {
-            this.predicate = predicate;
-        }
-
-        public boolean test(Person p) {
-            return predicate.test(p);
         }
     }
 
