@@ -86,12 +86,15 @@ public final class PersonWarehouse implements Iterable<Person> {
         return people.stream().flatMap(person -> Stream.of(person.getAliases()));
     }
 
-    public static void printPersons(List<Person> roster, CheckPerson tester) {
+    public static ArrayList<Person> printPersons(List<Person> roster, CheckPerson tester) {
+        ArrayList<Person> people = new ArrayList<>();
         for (Person p : roster) {
             if (tester.test(p)) {
+                people.add(p);
                 p.printPerson(p);
             }
         }
+        return people;
     }
 
     public class Tester implements CheckPerson{

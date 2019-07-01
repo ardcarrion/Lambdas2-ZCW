@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
@@ -78,7 +79,21 @@ public class TestPersonWarehouse {
     @Test
     public void testPrintPersons() {
         List<Person> roster = factory.createPersonList(1000);
-        CheckPerson tester = warehouse.new Tester();
+        Predicate<Person> predicate = p -> p.getAge() < 21;
+        CheckPerson tester = warehouse.new Tester(predicate);
+        long expected = roster.stream().filter(predicate).count();
+        long actual = (long)warehouse.printPersons(roster, tester).size();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPrintPersons2() {
+        List<Person> roster = factory.createPersonList(1000);
+        Predicate<Person> predicate = p -> p.getName().endsWith("a");
+        CheckPerson tester = warehouse.new Tester(predicate);
+        long expected = roster.stream().filter(predicate).count();
+        long actual = (long)warehouse.printPersons(roster, tester).size();
+        Assert.assertEquals(expected, actual);
     }
 
 }
