@@ -79,8 +79,18 @@ public class TestPersonWarehouse {
     @Test
     public void testPrintPersons() {
         List<Person> roster = factory.createPersonList(1000);
-        Predicate<Person> olderThanTwentyOne = (p) -> p.getAge() > 21;
-        warehouse.printPersons(roster, olderThanTwentyOne);
+        Predicate<Person> predicate = p -> p.getAge() < 21;
+        long expected = roster.stream().filter(predicate).count();
+        long actual = (long)warehouse.printPersons(roster, predicate).size();
+        Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void testPrintPersons2() {
+        List<Person> roster = factory.createPersonList(1000);
+        Predicate<Person> predicate = p -> p.getName().endsWith("a");
+        long expected = roster.stream().filter(predicate).count();
+        long actual = (long)warehouse.printPersons(roster, predicate).size();
+        Assert.assertEquals(expected, actual);
+    }
 }
